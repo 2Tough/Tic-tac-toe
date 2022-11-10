@@ -8,3 +8,26 @@ body {
     margin: 0;
     
 }
+
+.container {
+    margin: 0 auto;
+    display: inline-grid;
+    width: 80%;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, minmax(200px, 1fr)); 
+    background: black;
+
+}
+
+.gamebox {
+    background: rgb(61, 61, 0);
+    
+    color: aliceblue;
+    width: 100%;
+    font-size: 15rem;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
