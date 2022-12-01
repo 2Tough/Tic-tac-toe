@@ -8,6 +8,19 @@ let O_turn = 'O'
 clickArea.forEach(element => {
     element.addEventListener('click', handleClick, {once: true})
 });
+
+function handleClick(e) {
+    const cell = e.target
+    const currentTurn = whoseTurn ? O_turn : X_turn
+
+    nextTurn(cell, currentTurn)
+}
+
+function nextTurn(cell, currentTurn) {
+    cell.classList.add(currentTurn)
+}
+
+
 // const gameBoard = (() => {
 
    
@@ -54,13 +67,3 @@ clickArea.forEach(element => {
     
     
 // })()
-function handleClick(e) {
-    const cell = e.target
-    const currentTurn = whoseTurn ? O_turn : X_turn
-
-    nextTurn(cell, currentTurn)
-}
-
-function nextTurn(cell, currentTurn) {
-    cell.classList.add(currentTurn)
-}
