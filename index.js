@@ -1,6 +1,7 @@
 let origBoard
 const huPlayer = '0'
 const aiPlayer = 'X'
+const unbeatable = document.getElementById('unbeatable')
 const winCombos = [
 	[0,1,2],
 	[3,4,5],
@@ -16,12 +17,12 @@ const cells = document.querySelectorAll('.cell')
 startGame()
 
 function startGame() {
-	document.querySelector(".endgame").getElementsByClassName.display = 'none'
-	origBoard = Array.from(Array(9).keys)
-	for (let i = 0 ; i < cells.length ; i++) {
-		cells[i].innerHTML = "";
-		cells[i].style.removeProperty('background-color')
-		cells[i].addEventListener('click', turnClick, false)
+	document.querySelector(".endgame").style.display = "none";
+	origBoard = Array.from(Array(9).keys());
+	for (var i = 0; i < cells.length; i++) {
+		cells[i].innerText = '';
+		cells[i].style.removeProperty('background-color');
+		cells[i].addEventListener('click', turnClick, false);
 	}
 }
 
@@ -51,20 +52,20 @@ function turn(squareId, player) {
 	}
 	return gameWon
  }
-
- function gameOver(gameWon) {
-	for(let index of winCombos[gameWon.index]) {
-		document.getElementById(index).style.backgroundColor = gameWon.player == huPlayer ? "blue" : "red"
+function gameOver(gameWon) {
+	for (let index of winCombos[gameWon.index]) {
+		document.getElementById(index).style.backgroundColor =
+			gameWon.player == huPlayer ? "blue" : "red";
 	}
-	for (let i = 0 ; i < cells.length ; i++) {
-		cells[i].removeEventListener('click', turnClick, false)
+	for (var i = 0; i < cells.length; i++) {
+		cells[i].removeEventListener('click', turnClick, false);
 	}
-	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.")
- }
+	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
+}
 
 function declareWinner(who) {
 	document.querySelector(".endgame").style.display = "block";
-	document.querySelector(".endgame .text").innerText = who;
+	document.querySelector(".endgame .text").innerText = who
 }
 
 
@@ -86,4 +87,48 @@ function emptySquares() {
 		return true
 	}
 	return false
+ }
+
+ function unbeatableAI () {
+	return minimax(origBoard, aiPlayer).index
+ }
+
+ function minimax(newBoard, player) {
+	let availSpots = emptySquares(newBoard)
+
+	if(checkWin(newBoard, player)) {
+		return {score: -10}
+	} else if(checkWin(newBoard, aiPlayer)) {
+		return {score: 20}
+	} else if (availSpots.length === 0) {
+		return {score: 0}
+	}
+	let moves = []
+	for (let i = 0 ; i < availSpots.length ; i++) {
+		let move = {}
+		move.index = newBoard[availSpots[i]]
+		newBoard[availSpots[i]] = player
+
+		if (player == aiPlayer) {
+			let result = minimax(newBoard, huPlayer)
+			move.score = result.score
+		} else {
+			let result = minimax(newBoard, aiPlayer)
+			move.score = result.score
+		}
+
+		newBoard[availSpots[i]] = move.index
+
+		moves.push(move)
+	}
+	let bestMove
+	if(player === aiPlayer) {
+		let bestScore = -10000
+		for(let i = 0; i < moves.length ; i++) {
+			if(moves[i].score > bestScore) {
+				bestScore = moves[i].score
+				bestMove = i
+			}
+		}
+	}
  }
