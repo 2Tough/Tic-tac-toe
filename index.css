@@ -4,30 +4,54 @@
     box-sizing: border-box;
 }
 
+:root {
+    --cell-size: 100px;
+    --mark-size: cal(var(--cell-size)* 0.9)
+}
+
 body {
     margin: 0;
     
 }
 
-.container {
-    margin: auto;
+.board {
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    width: 80%;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(3, minmax(200px, 1fr)); 
-    background: black;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
 
 }
 
-.gamebox {
-    background: rgb(61, 61, 0);
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+.cell.x {
     
-    color: aliceblue;
-    width: 100%;
-    font-size: 15rem;
-    display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
