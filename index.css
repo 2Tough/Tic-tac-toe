@@ -11,12 +11,28 @@
 
 body {
     margin: 0;
+    font-family: "Marker", sans-serif;
     
 }
 
-.board {
+/* .whiteboard {
+    background-image: url('./images/whiteboard.jpg');
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+
     width: 100vw;
     height: 100vh;
+} */
+
+.scores {
+    text-align: center;
+}
+
+.board {
+   
+
     display: grid;
     justify-content: center;
     align-content: center;
@@ -137,10 +153,6 @@ body {
     
 }
 
-
-
-
-
 .winning-message button {
     font-size: 3rem;
     background-color: white;
@@ -158,6 +170,3 @@ body {
 .winning-message.show {
     display: flex
 }
-
-
-
