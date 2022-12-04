@@ -1,4 +1,10 @@
-let turnsArray = []
+const cellElements = document.querySelectorAll('[data-cell]')
+const board = document.getElementById('board')
+const X_CLASS = 'x'
+const CIRCLE_CLASS = 'circle'
+let circleTurn
+
+
 
 const WINNING_COMBINATIONS = [
 	[0, 1, 2],
@@ -12,22 +18,44 @@ const WINNING_COMBINATIONS = [
 ]
 
 
-clickArea.forEach(element => {
-    element.addEventListener('click', handleClick, {once: true})
-});
+startGame()
+
+
+function startGame() {
+	circleTurn = false
+	cellElements.forEach(cell => {
+		cell.addEventListener('click', handleClick, {once: true})
+		
+	});
+	setBoardHoverClass()
+}
 
 function handleClick(e) {
-    whoseTurn ? e.target.innerText = 'x' : e.target.innerText = 'o'
-    whoseTurn ? turnsArray.push('x') : turnsArray.push('0')
-    
-    console.log(e.target.dataset.attribute)
-    whoseTurn = !whoseTurn
-    
+	const cell = e.target
+	const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+	placeMark(cell, currentClass)
+	swapTurns()
+	setBoardHoverClass()
     
 }
+
 
 function placeMark(cell, currentTurn) {
-    cell.classList.add(currentTurn)
-    clickArea.innerHtml = 'X'
+    cell.classList.add(currentClass)
+    
 }
 
+function swapTurns() {
+	circleTurn = !circleTurn
+}
+
+
+function setBoardHoverClass() {
+	board.classList.remove(X_CLASS)
+	board.classList.remove(CIRCLE_CLASS)
+	if(circleTurn) {
+		board.classList.add(CIRCLE_CLASS)
+	} else {
+		board.classList.add(X_CLASS)
+	}
+}

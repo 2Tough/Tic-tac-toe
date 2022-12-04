@@ -6,7 +6,7 @@
 
 :root {
     --cell-size: 100px;
-    --mark-size: cal(var(--cell-size)* 0.9)
+    --mark-size: calc(var(--cell-size)* 0.9)
 }
 
 body {
@@ -30,6 +30,12 @@ body {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
 }
 
 .cell:first-child,
@@ -52,6 +58,101 @@ body {
     border-bottom: none;
 }
 
-.cell.x {
+
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before {
+    background-color: black;
+}
+
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before  {
+    background-color: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: "";
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(135deg);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
     
 }
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) *0.7) ;
+    height: calc(var(--mark-size) *0.7);
+    background-color: white;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.winning-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font: 5rem;
+    flex-direction: column;
+    display: none;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1[x solid black];
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover {
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+
+.winning-message.show {
+    display: flex
+}
+
+
+
