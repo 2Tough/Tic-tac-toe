@@ -22,6 +22,12 @@ function unbeatableAI() {
 	startGame()
 }
 
+function restart() {
+	unbeatableMachine = false
+	
+	startGame()
+}
+
 
 startGame()
 
