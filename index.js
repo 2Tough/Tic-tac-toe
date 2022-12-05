@@ -2,7 +2,9 @@ let origBoard
 const huPlayer = '0'
 const aiPlayer = 'X'
 const unbeatable = document.getElementById('unbeatable')
+const humanPlayer = document.getElementById('humanPlayer')
 let unbeatableMachine = false
+let humanPlay = false
 const winCombos = [
 	[0,1,2],
 	[3,4,5],
@@ -21,6 +23,7 @@ function unbeatableAI() {
 	unbeatableMachine = true
 	startGame()
 }
+
 
 function restart() {
 	unbeatableMachine = false
@@ -70,7 +73,8 @@ function turn(squareId, player) {
 function gameOver(gameWon) {
 	for (let index of winCombos[gameWon.index]) {
 		document.getElementById(index).style.backgroundColor =
-			gameWon.player == huPlayer ? "blue" : "red";
+			gameWon.player == huPlayer ? "lightgreen" : "red";
+			
 	}
 	for (var i = 0; i < cells.length; i++) {
 		cells[i].removeEventListener('click', turnClick, false);
@@ -81,6 +85,7 @@ function gameOver(gameWon) {
 function declareWinner(who) {
 	document.querySelector(".endgame").style.display = "block";
 	document.querySelector(".endgame .text").innerText = who
+	
 }
 
 
@@ -88,19 +93,19 @@ function emptySquares() {
 	return origBoard.filter(s => typeof s == 'number')
 }
 
- function bestSpot() {
+ function bestSpot(square) {
 
 	if (unbeatableMachine == false) {
 	return emptySquares()[0];
 	} else {
 		return minimax(origBoard, aiPlayer).index;
 	}
- }
+	}
 
  function checkTie () {
 	if (emptySquares().length == 0) {
 		for (let i = 0 ; i < cells.length ; i++) {
-			cells[i].style.backgroundColor = "green"
+			cells[i].style.backgroundColor = "lightgray"
 			cells[i].removeEventListener('click', turnClick, false)
 		}
 		declareWinner("Tie game!")
