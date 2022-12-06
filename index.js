@@ -3,6 +3,7 @@ const huPlayer = '0'
 const aiPlayer = 'X'
 const unbeatable = document.getElementById('unbeatable')
 const humanPlayer = document.getElementById('humanPlayer')
+const getName = document.getElementById('getName').value
 let unbeatableMachine = false
 let humanPlay = false
 const winCombos = [
@@ -15,6 +16,21 @@ const winCombos = [
 	[0,4,8],
 	[6,4,2],
 ]
+
+// Underscore before functions means private functions
+
+ //Factory function
+ 
+ function createPlayer(name, symbol) {
+	return {
+		name,
+		symbol
+	}
+ }
+
+const test = createPlayer('Valentin', X)
+console.log(test)
+
 
 const cells = document.querySelectorAll('.cell')
 unbeatable.addEventListener('click', unbeatableAI) 
