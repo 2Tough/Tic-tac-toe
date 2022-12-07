@@ -1,9 +1,10 @@
 let origBoard
-const huPlayer = '0'
-const aiPlayer = 'X'
+const huPlayer = 'X'
+const aiPlayer = 'O'
 const unbeatable = document.getElementById('unbeatable')
 const humanPlayer = document.getElementById('humanPlayer')
 const getName = document.getElementById('getName').value
+const getNameBtn = document.getElementById('getNameB-btn')
 let unbeatableMachine = false
 let humanPlay = false
 const winCombos = [
@@ -17,19 +18,32 @@ const winCombos = [
 	[6,4,2],
 ]
 
+
 // Underscore before functions means private functions
 
  //Factory function
+
+ getNameBtn.addEventListener('click', function() {
+
+	const test = createPlayer(getName)
+	console.log(getName)
+	
+ })
  
- function createPlayer(name, symbol) {
+ function createPlayer(getName) {
 	return {
-		name,
-		symbol
+		name: getName,
+		symbol: huPlayer,
+
+		changePlayer() {
+			symbol: !huPlayer
+		}
+
 	}
  }
 
-const test = createPlayer('Valentin', X)
-console.log(test)
+
+
 
 
 const cells = document.querySelectorAll('.cell')

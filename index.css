@@ -74,6 +74,7 @@ table tr td:last-child {
     color: white;
     font-size: 5rem;
     display: flex;
+    display: none;
     
     
   }
@@ -97,6 +98,7 @@ table tr td:last-child {
     border: 1px solid black;
     padding: .25em .5em;
     cursor: pointer;
+    
   }
   
   .endgame button:hover {
