@@ -50,17 +50,22 @@ const gameBoardModule = (() => {
         const createdPlayerTwoArray = []
         getNameBtn.addEventListener('click', () => {
             const playerOne = factoryPlayer(input.value, "X") 
-            const playerTwo = factoryPlayer(input, "0")
+            const playerTwo = factoryPlayer(input.value, "0")
             
             createdPlayerOneArray.push(playerOne.playerName, playerOne.assignedX0)
-            console.log(createdPlayerOneArray)
+            createdPlayerOneArray.splice(2,2)
+            console.log('result from 1st array: ' + createdPlayerOneArray)
+            enterName.textContent = 'Enter name for player 2'
             
-            if(!createdPlayerOneArray[0]) {
-                createdPlayerTwoArray.push(playerTwo)
+            
+            if(createdPlayerOneArray[0]) {
+                
+                createdPlayerTwoArray.unshift(playerTwo.playerName, playerTwo.assignedX0)
+                createdPlayerTwoArray.splice(2,2)
+                
                 // console.log(createdPlayerArray[0])
-                console.log('first if statement')
-            } else {
-                console.log('2nd if statement' )
+                
+                console.log('result from 2nd array: ' +  createdPlayerTwoArray)
             }
             
             })
