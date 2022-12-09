@@ -25,36 +25,31 @@ console.log(testPlayer)
 
 const gameBoardModule = (() => {
      // variables 
-     
     const values = []
     
-    
     let input = document.getElementById('getName')
-    
     const getNameBtn = document.getElementById('getName-btn')
     const gameBoard = ["","1","","","","","","1","",];
-    
-
-    
-
-    
+    let firstTurn = true
+    const createdPlayerOneArray = []
+    const createdPlayerTwoArray = []
 
     const placeMark = (() => {
-        const mark = 'testing mark'
+        let markSign = firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]
+        let mark = 'testing mark'
         const marking2 = 'mark 2'
         return {mark, marking2}
     })
     
     const createPlayer = (() => {
-        const createdPlayerOneArray = []
-        const createdPlayerTwoArray = []
+
         getNameBtn.addEventListener('click', () => {
             const playerOne = factoryPlayer(input.value, "X") 
             const playerTwo = factoryPlayer(input.value, "0")
             
             createdPlayerOneArray.push(playerOne.playerName, playerOne.assignedX0)
             createdPlayerOneArray.splice(2,2)
-            console.log('result from 1st array: ' + createdPlayerOneArray)
+            console.log('result from 1st array: ' + createdPlayerOneArray[1])
             enterName.textContent = 'Enter name for player 2'
             
             
@@ -72,12 +67,18 @@ const gameBoardModule = (() => {
         
     
         return createdPlayerOneArray, createdPlayerTwoArray
+        console.log(createdPlayerOneArray, createdPlayerTwoArray)
     })
     
     const changeTurns = (() => {
+          firstTurn = !firstTurn  
+          
+          return changeTurns
     })
     
     return {gameBoard, placeMark, createPlayer, changeTurns}
+    
+    
 })()
 
 
