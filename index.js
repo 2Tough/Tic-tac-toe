@@ -19,7 +19,7 @@ const gameBoardModule = (() => {
     
     let input = document.getElementById('getName')
     const getNameBtn = document.getElementById('getName-btn')
-    const gameBoard = ["","1","","","","","","1","",];
+    const gameBoard = ["","","","","","","","","",];
     let firstTurn = true
     
     const createdPlayerOneArray = []
@@ -37,7 +37,12 @@ const gameBoardModule = (() => {
                 
                 cell.textContent = `${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`
                 
+                // Gameboard get the correct position in the board with .dataset.id, removes the empty space (1), and adds the corresponding mark with markSign.
+                gameBoard.splice(e.target.dataset.id, 1, `${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`)
+                console.log(gameBoard)
+                
                 changeTurns()
+                checkWinner()
                 
             }, {once : true})
         })
@@ -83,6 +88,10 @@ const gameBoardModule = (() => {
           firstTurn = !firstTurn  
           
           return changeTurns
+    })
+    
+    const checkWinner = (() => {
+          
     })
     
     return {gameBoard, placeMark, createPlayer, changeTurns}
