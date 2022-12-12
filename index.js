@@ -93,23 +93,32 @@ const gameBoardModule = (() => {
           return changeTurns
     })
     // brute force checking for mark
-    const checkWinner = ((markSign) => {
+    const checkWinner = (() => {
         
         if(gameBoard[0] === 'X' &&
             gameBoard[1] === 'X' &&
             gameBoard[2] === 'X' 
             
-            ||
+        ) {
+            console.log(`${createdPlayerOneArray[0]} won!`)
+        } else if (
             
             gameBoard[0] === '0' &&
             gameBoard[1] === '0' &&
             gameBoard[2] === '0' 
             
-        ) { console.log("Win")}
+        ) { console.log(`${createdPlayerTwoArray[0]} won!`)}
         else if (
             gameBoard[3] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[5] === "X"
+            
+            ||
+            
+            gameBoard[3] === "X" &&
+            gameBoard[4] === "X" &&
+            gameBoard[5] === "X"
+            
         ) { console.log("Win")}
         else if (
             gameBoard[6] === "X" &&

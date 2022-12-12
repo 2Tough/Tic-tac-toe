@@ -3,3 +3,9 @@ A simple game project.
 
 This branch is done according to the Odin Project guidelines. It has to use module and factories. 
 The first goal is to get a human vs human gameboard going and then implement an easy AI or unbeatable AI.
+
+This was by far one of the projects I was more frustrated with but most rewarding as well. Though a simple concept, having modules operating in their own enviroment and how to make them interact with each other was a new way of building for me. 
+
+I learned how to use factories and how to divide projects in modules and working on them individually, which is something I wanted to do in previous projects.
+
+I watched tutorials and followed along them, but I really wanted to build this with my own code, though simple, but understandable and easy to follow.
