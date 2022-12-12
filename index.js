@@ -1,13 +1,3 @@
-///////////////
-
-
-
-
-
-///////////////////
-
-
-
 const factoryPlayer = (playerName, assignedX0) => {
     const getPlayerName = () => {
         playerName
@@ -31,14 +21,33 @@ const gameBoardModule = (() => {
     const getNameBtn = document.getElementById('getName-btn')
     const gameBoard = ["","1","","","","","","1","",];
     let firstTurn = true
+    
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
 
     const placeMark = (() => {
+        const gridBoxes = document.querySelectorAll('[data-id]')
         let markSign = firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]
+        
+        gridBoxes.forEach(cell => {
+            cell.addEventListener('click', (e)=> {
+                console.log(e.target.dataset.id)
+                console.log(firstTurn)
+                console.log(`${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`)
+                
+                cell.textContent = `${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`
+                
+                changeTurns()
+                
+            }, {once : true})
+        })
+        
+        
+        
+        
         let mark = 'testing mark'
         const marking2 = 'mark 2'
-        return {mark, marking2}
+        return {mark, marking2, markSign}
     })
     
     const createPlayer = (() => {
@@ -91,12 +100,15 @@ const displayControllerModule = (() => {
 
 const renderArrayToScreenModule = (() => {
     const gridBoxes = document.querySelectorAll('[data-id]')
+    
     for (let i = 0 ; i < gameBoardModule.gameBoard.length ; i++) {
-        gridBoxes[i].textContent = gameBoardModule.gameBoard[i]
+        
+        console.log("show me the gameboard Module", gameBoardModule.gameBoard[i])
     }
     // console.log("test renderArrayToScreenModule", gameBoardModule.gameBoard)
     // console.log("test node list", gridBoxes)
-    console.log("show me the test", gameBoardModule.placeMark())
+    
+    console.log("show me the mark", gameBoardModule.placeMark())
     console.log("show me the players", gameBoardModule.createPlayer())
     return {}
 })()
