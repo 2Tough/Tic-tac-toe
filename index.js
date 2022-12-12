@@ -44,7 +44,10 @@ const gameBoardModule = (() => {
                 changeTurns()
                 checkWinner()
                 
+                
             }, {once : true})
+            
+            
         })
         
         
@@ -89,12 +92,37 @@ const gameBoardModule = (() => {
           
           return changeTurns
     })
-    
-    const checkWinner = (() => {
-          
+    // brute force checking for mark
+    const checkWinner = ((markSign) => {
+        
+        if(gameBoard[0] === 'X' &&
+            gameBoard[1] === 'X' &&
+            gameBoard[2] === 'X' 
+            
+            ||
+            
+            gameBoard[0] === '0' &&
+            gameBoard[1] === '0' &&
+            gameBoard[2] === '0' 
+            
+        ) { console.log("Win")}
+        else if (
+            gameBoard[3] === "X" &&
+            gameBoard[4] === "X" &&
+            gameBoard[5] === "X"
+        ) { console.log("Win")}
+        else if (
+            gameBoard[6] === "X" &&
+            gameBoard[7] === "X" &&
+            gameBoard[8] === "X"
+        ) { console.log("Win")}
+        
     })
     
-    return {gameBoard, placeMark, createPlayer, changeTurns}
+    
+    
+    
+    return {gameBoard, placeMark, createPlayer, changeTurns, checkWinner}
     
     
 })()
