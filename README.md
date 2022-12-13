@@ -9,3 +9,7 @@ This was by far one of the projects I was more frustrated with but most rewardin
 I learned how to use factories and how to divide projects in modules and working on them individually, which is something I wanted to do in previous projects.
 
 I watched tutorials and followed along them, but I really wanted to build this with my own code, though simple, but understandable and easy to follow.
+
+Though there are other methods for defining the win and draw conditions, my method is my own, which I find is the easiest to understand.
+
+Nevertheless, by watching other tutorials I did learn about different methods to check for winning conditions, how to change turns
