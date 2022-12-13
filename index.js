@@ -19,11 +19,17 @@ const gameBoardModule = (() => {
     
     let input = document.getElementById('getName')
     const getNameBtn = document.getElementById('getName-btn')
+    const nameScreen = document.getElementById('nameScreen')
     const gameBoard = ["","","","","","","","","",];
     let firstTurn = true
     
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
+    
+    
+    const getName = (() => {
+        
+    })
 
     const placeMark = (() => {
         const gridBoxes = document.querySelectorAll('[data-id]')
@@ -73,12 +79,19 @@ const gameBoardModule = (() => {
             if(createdPlayerOneArray[0]) {
                 
                 createdPlayerTwoArray.unshift(playerTwo.playerName, playerTwo.assignedX0)
+                if(createdPlayerTwoArray.length >= 3) {
+                nameScreen.style.display = 'none'
+            }
                 createdPlayerTwoArray.splice(2,2)
                 
                 // console.log(createdPlayerArray[0])
                 
                 console.log('result from 2nd array: ' +  createdPlayerTwoArray)
+                console.log(createdPlayerTwoArray.length)
+                
             }
+            
+            
             
             })
         
@@ -94,7 +107,7 @@ const gameBoardModule = (() => {
     })
     // brute force checking for mark
     const checkWinner = (() => {
-        
+        // checking for 1st horizontal line X
         if(gameBoard[0] === 'X' &&
             gameBoard[1] === 'X' &&
             gameBoard[2] === 'X' 
@@ -102,24 +115,28 @@ const gameBoardModule = (() => {
         ) {
             console.log(`${createdPlayerOneArray[0]} won!`)
         } else if (
-            
+        // checking for 1st horizontal line 0    
             gameBoard[0] === '0' &&
             gameBoard[1] === '0' &&
             gameBoard[2] === '0' 
             
         ) { console.log(`${createdPlayerTwoArray[0]} won!`)}
+        // checking for 2nd horizontal line X
         else if (
             gameBoard[3] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[5] === "X"
+          ) {
+            console.log(`${createdPlayerOneArray[0]} won!`)
+        // checking for 2nd horizontal line 0
+        } else if (
             
-            ||
+            gameBoard[3] === "0" &&
+            gameBoard[4] === "0" &&
+            gameBoard[5] === "0"
             
-            gameBoard[3] === "X" &&
-            gameBoard[4] === "X" &&
-            gameBoard[5] === "X"
-            
-        ) { console.log("Win")}
+       ) { console.log(`${createdPlayerTwoArray[0]} won!`)}
+       
         else if (
             gameBoard[6] === "X" &&
             gameBoard[7] === "X" &&
@@ -140,7 +157,7 @@ const gameBoardModule = (() => {
 
 
 const displayControllerModule = (() => {
-    const test = () => {console.log('test')}
+    const test = () => {console.log('testing display Controller')}
     return test
 })()
 
