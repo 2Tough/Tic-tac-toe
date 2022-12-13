@@ -15,7 +15,7 @@ console.log(testPlayer)
 
 const gameBoardModule = (() => {
      // variables 
-    const values = []
+    let count = 0
     
     let input = document.getElementById('getName')
     const getNameBtn = document.getElementById('getName-btn')
@@ -37,6 +37,9 @@ const gameBoardModule = (() => {
         
         gridBoxes.forEach(cell => {
             cell.addEventListener('click', (e)=> {
+                
+                count += 1
+                console.log('give the count: ' + count)
                 console.log(e.target.dataset.id)
                 console.log(firstTurn)
                 console.log(`${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`)
@@ -102,12 +105,20 @@ const gameBoardModule = (() => {
     })
     // brute force checking for mark
     const checkWinner = (() => {
+        let player1Win = false
+        let player2Win = false
+        let draw = false
+        
+        
+        
+        
         // checking for 1st horizontal line X
         if(gameBoard[0] === 'X' &&
             gameBoard[1] === 'X' &&
             gameBoard[2] === 'X' 
             
         ) {
+            player1Win = true
             console.log(`${createdPlayerOneArray[0]} won!`)
         } else if (
         // checking for 1st horizontal line 0    
@@ -115,13 +126,16 @@ const gameBoardModule = (() => {
             gameBoard[1] === '0' &&
             gameBoard[2] === '0' 
             
-        ) { console.log(`${createdPlayerTwoArray[0]} won!`)}
+        ) { 
+            player2Win = true
+            console.log(`${createdPlayerTwoArray[0]} won!`)}
         // checking for 2nd horizontal line X
         else if (
             gameBoard[3] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[5] === "X"
           ) {
+            player1Win = true
             console.log(`${createdPlayerOneArray[0]} won!`)
         // checking for 2nd horizontal line 0
         } else if (
@@ -130,84 +144,111 @@ const gameBoardModule = (() => {
             gameBoard[4] === "0" &&
             gameBoard[5] === "0"
             
-       ) { console.log(`${createdPlayerTwoArray[0]} won!`)}
+       ) { 
+           player2Win = true
+           console.log(`${createdPlayerTwoArray[0]} won!`)}
        // checking for 3rd horizontal line X
         else if (
             gameBoard[6] === "X" &&
             gameBoard[7] === "X" &&
             gameBoard[8] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         // checking for 3rd horizontal line 0
         else if (
             gameBoard[6] === "0" &&
             gameBoard[7] === "0" &&
             gameBoard[8] === "0"
-        ) { console.log("0 Wins")}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         // checking for 1st vertical line X
         else if (
             gameBoard[0] === "X" &&
             gameBoard[3] === "X" &&
             gameBoard[6] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         // checking for 1st vertical line 0
         else if (
             gameBoard[0] === "0" &&
             gameBoard[3] === "0" &&
             gameBoard[6] === "0"
-        ) { console.log("0 Wins")}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         // checking for 2nd vertical line X
         else if (
             gameBoard[1] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[7] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         // checking for 2nd vertical line 0
         else if (
             gameBoard[1] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[7] === "0"
-        ) { console.log("0 Wins")}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         // checking for 3nd vertical line X
         else if (
             gameBoard[2] === "X" &&
             gameBoard[5] === "X" &&
             gameBoard[8] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         // checking for 3nd vertical line 0
         else if (
             gameBoard[2] === "0" &&
             gameBoard[5] === "0" &&
             gameBoard[8] === "0"
-        ) { console.log("0 Wins")}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         // checking for diagonal line X top left to bottom right
         else if (
             gameBoard[0] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[8] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         // checking for diagonal line 0 top left to bottom right
         else if (
             gameBoard[0] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[8] === "0"
-        ) { console.log("0 Wins")}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         // checking for diagonal line X top right to bottom left
         else if (
             gameBoard[2] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[6] === "X"
-        ) { console.log("X Wins")}
+        ) { 
+            player1Win = true
+            console.log("X Wins")}
         else if (
             gameBoard[2] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[6] === "0"
-        ) { console.log("0 Wins")}
-        else if (
-            gameBoard.includes(!"")
-        ) { console.log('draw')}
+        ) { 
+            player2Win = true
+            console.log("0 Wins")}
         
-        
-    })
+        else if (count == 9){
+                draw = true
+                console.log('draw')}   
+        }
+         
+           )
     
     
     
