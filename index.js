@@ -25,6 +25,8 @@ const gameBoardModule = (() => {
     
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
+    let scorePlayer1 = 0
+    let scorePlayer2 = 0
     
     
     const getName = (() => {
@@ -91,12 +93,32 @@ const gameBoardModule = (() => {
                 console.log(createdPlayerTwoArray.length)
                 
             }
+            displayPlayers()
+            return playerOne, playerTwo
             })
         
     
         return createdPlayerOneArray, createdPlayerTwoArray
         console.log(createdPlayerOneArray, createdPlayerTwoArray)
     })
+    
+        const displayPlayers = ((playerOne,playerTwo) => {
+          const playerOneScore = document.getElementById('playerOneScore')
+          const playerTwoScore = document.getElementById('playerTwoScore')
+            
+            //playerOneScore.textContent =`${playerOne.playerName} score`
+            playerOneScore.textContent = `${createdPlayerOneArray[0]} ${scorePlayer1}`
+            playerTwoScore.textContent = `${createdPlayerTwoArray[0]} ${scorePlayer2}`
+            
+    })
+    
+    
+    const DisplayScore = (() => {
+        localStorage.setItem('player1Score', player1Score);
+        localStorage.setItem('player2Score', player2Score);
+    })
+    
+    
     
     const changeTurns = (() => {
           firstTurn = !firstTurn  
@@ -108,12 +130,22 @@ const gameBoardModule = (() => {
         let player1Win = false
         let player2Win = false
         let draw = false
-        
+        //      Alternative code
+        //     
+        //     for(let i = 0; i < 2 ; i++) {
+        //     if(gameBoard[i] === 'X') 
+        //     {player1Win = true
+        //     console.log(`${createdPlayerOneArray[0]} won!`)}
+        //     else if(gameBoard[i] === '0'){
+        //      {player2Win = true
+        //      console.log(`${createdPlayerOneArray[0]} won!`)}   
+        //     }
+        // }
         
         
         
         // checking for 1st horizontal line X
-        if(gameBoard[0] === 'X' &&
+        if (gameBoard[0] === 'X' &&
             gameBoard[1] === 'X' &&
             gameBoard[2] === 'X' 
             
@@ -246,9 +278,10 @@ const gameBoardModule = (() => {
         else if (count == 9){
                 draw = true
                 console.log('draw')}   
-        }
-         
-           )
+        
+        return {player1Win, player2Win, draw}
+        
+        })
     
     
     
@@ -262,17 +295,28 @@ const gameBoardModule = (() => {
 
 
 const displayControllerModule = (() => {
+    const winOrDrawMessage = document.getElementById('data-winning-message-text')
+    
     const test = () => {console.log('testing display Controller')}
     return test
+    
+    
+    
 })()
 
 const renderArrayToScreenModule = (() => {
     const gridBoxes = document.querySelectorAll('[data-id]')
+    const playerOneScore = document.getElementById('playerOneScore')
+    const playerTwoScore = document.getElementById('playerTwoScore')
     
-    for (let i = 0 ; i < gameBoardModule.gameBoard.length ; i++) {
+
+    
+    //console.log('who are the players? ' + gameBoardModule.)
+    
+    // for (let i = 0 ; i < gameBoardModule.gameBoard.length ; i++) {
         
-        console.log("show me the gameboard Module", gameBoardModule.gameBoard[i])
-    }
+    //     console.log("show me the gameboard Module", gameBoardModule.gameBoard[i])
+    // }
     // console.log("test renderArrayToScreenModule", gameBoardModule.gameBoard)
     // console.log("test node list", gridBoxes)
     

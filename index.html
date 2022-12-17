@@ -10,12 +10,19 @@
 </head>
 <body>
     <div>
-        
+        <div class="buttons">
         <button id="unbeatable">Activate unbeatable AI</button>
         <button onclick="restart()">Restart</button>
-        <h3>Enter name</h3>
-        <input id="getName"></div>
-        <button id="getNameB-btn">Submit</button>
+        </div>
+        <div>
+            <h2 id="playerOneScore">Player 1 Score: </h2>
+            <h2 id="playerTwoScore">Player 2 Score: </h2>
+        </div>
+        <div id="nameScreen">
+            <h3 id="enterName">Enter name for 1st player</h3>
+            <input required id="getName">
+            <button id="getName-btn">Submit</button>
+        </div>
         
     </div>
     <div class="board" id="board">
