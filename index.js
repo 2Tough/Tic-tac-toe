@@ -25,8 +25,8 @@ const gameBoardModule = (() => {
     
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
-    let scorePlayer1 = 0
-    let scorePlayer2 = 0
+    let player1Score = 0
+    let player2Score = 0
     
     
     const getName = (() => {
@@ -114,8 +114,9 @@ const gameBoardModule = (() => {
     
     
     const DisplayScore = (() => {
-        localStorage.setItem('player1Score', player1Score);
-        localStorage.setItem('player2Score', player2Score);
+        localStorage.getItem('player1Score', player1Score);
+        localStorage.getItem('player2Score', player2Score);
+        
     })
     
     
@@ -152,6 +153,9 @@ const gameBoardModule = (() => {
         ) {
             player1Win = true
             console.log(`${createdPlayerOneArray[0]} won!`)
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
         } else if (
         // checking for 1st horizontal line 0    
             gameBoard[0] === '0' &&
@@ -160,6 +164,9 @@ const gameBoardModule = (() => {
             
         ) { 
             player2Win = true
+            player2Score++
+            console.log(player2Score)
+            localStorage.setItem('player2Score', player2Score);
             console.log(`${createdPlayerTwoArray[0]} won!`)}
         // checking for 2nd horizontal line X
         else if (
@@ -169,6 +176,9 @@ const gameBoardModule = (() => {
           ) {
             player1Win = true
             console.log(`${createdPlayerOneArray[0]} won!`)
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
         // checking for 2nd horizontal line 0
         } else if (
             
@@ -178,6 +188,9 @@ const gameBoardModule = (() => {
             
        ) { 
            player2Win = true
+           player2Score++
+           console.log(player2Score)
+           localStorage.setItem('player2Score', player2Score);
            console.log(`${createdPlayerTwoArray[0]} won!`)}
        // checking for 3rd horizontal line X
         else if (
@@ -186,6 +199,9 @@ const gameBoardModule = (() => {
             gameBoard[8] === "X"
         ) { 
             player1Win = true
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
             console.log("X Wins")}
         // checking for 3rd horizontal line 0
         else if (
@@ -202,7 +218,11 @@ const gameBoardModule = (() => {
             gameBoard[6] === "X"
         ) { 
             player1Win = true
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
             console.log("X Wins")}
+            
         // checking for 1st vertical line 0
         else if (
             gameBoard[0] === "0" &&
@@ -210,6 +230,9 @@ const gameBoardModule = (() => {
             gameBoard[6] === "0"
         ) { 
             player2Win = true
+            player2Score++
+            console.log(player2Score)
+            localStorage.setItem('player2Score', player2Score);
             console.log("0 Wins")}
         // checking for 2nd vertical line X
         else if (
@@ -218,6 +241,9 @@ const gameBoardModule = (() => {
             gameBoard[7] === "X"
         ) { 
             player1Win = true
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
             console.log("X Wins")}
         // checking for 2nd vertical line 0
         else if (
@@ -226,6 +252,9 @@ const gameBoardModule = (() => {
             gameBoard[7] === "0"
         ) { 
             player2Win = true
+            player2Score++
+            console.log(player2Score)
+            localStorage.setItem('player2Score', player2Score);
             console.log("0 Wins")}
         // checking for 3nd vertical line X
         else if (
@@ -234,6 +263,9 @@ const gameBoardModule = (() => {
             gameBoard[8] === "X"
         ) { 
             player1Win = true
+            player1Score++
+            console.log(player1Score)
+            localStorage.setItem('player1Score', player1Score);
             console.log("X Wins")}
         // checking for 3nd vertical line 0
         else if (
