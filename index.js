@@ -25,8 +25,8 @@ const gameBoardModule = (() => {
     
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
-    let player1Score = 0
-    let player2Score = 0
+    let scorePlayer1 = 0
+    let scorePlayer2 = 0
     
     
     const getName = (() => {
@@ -114,8 +114,8 @@ const gameBoardModule = (() => {
     
     
     const DisplayScore = (() => {
-        localStorage.getItem('player1Score', player1Score);
-        localStorage.getItem('player2Score', player2Score);
+        localStorage.getItem('player1Score', scorePlayer1);
+        localStorage.getItem('player2Score', scorePlayer2);
         
     })
     
