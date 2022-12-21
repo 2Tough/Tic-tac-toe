@@ -22,13 +22,16 @@ const gameBoardModule = (() => {
     const nameScreen = document.getElementById('nameScreen')
     const gameBoard = ["","","","","","","","","",];
     let firstTurn = true
+    let player1Win = false
+    let player2Win = false
+    let draw = false
     
     
     
     const createdPlayerOneArray = []
     const createdPlayerTwoArray = []
     let scorePlayer1 = 0
-    let scorePlayer2 = []
+    let scorePlayer2 = 0
     
     
     const getName = (() => {
@@ -42,9 +45,7 @@ const gameBoardModule = (() => {
         gridBoxes.forEach(cell => {
             cell.addEventListener('click', (e)=> {
                 
-                count += 1
-                console.log('give the count: ' + count)
-                console.log(e.target.dataset.id)
+                //console.log(e.target.dataset.id)
                 console.log(firstTurn)
                 console.log(`${firstTurn ? createdPlayerOneArray[1] : createdPlayerTwoArray[1]}`)
                 
@@ -116,12 +117,30 @@ const gameBoardModule = (() => {
     
     
     const DisplayScore = (() => {
-        if(!localStorage.getItem('scorePlayer1')) {
-            scorePlayer1.push(1)
-            localStorage.setItem('scorePlayer1', scorePlayer1)
-        } else {
-        console.log(localStorage.getItem('scorePlayer1'));
-        // console.log(`'give the score of player 1: ${scorePlayer1}`)
+        console.log(player1Win)
+        if(player1Win) {
+            console.log(`${createdPlayerOneArray[0]} won!`)
+             if(!localStorage.getItem('scorePlayer1')) {
+                scorePlayer1++ 
+                localStorage.setItem('scorePlayer1', scorePlayer1)
+                console.log(scorePlayer1)
+                } else {
+                scorePlayer1 = parseInt(localStorage.getItem('scorePlayer1')) +1
+                localStorage.setItem('scorePlayer1', scorePlayer1)
+                
+                }
+           
+        } else if(player2Win) {
+            console.log(`${createdPlayerTwoArray[0]} won!`)
+             if(!localStorage.getItem('scorePlayer2')) {
+                scorePlayer2++ 
+                localStorage.setItem('scorePlayer2', scorePlayer2)
+                console.log(scorePlayer2)
+                } else {
+                scorePlayer2 = parseInt(localStorage.getItem('scorePlayer2')) +1
+                localStorage.setItem('scorePlayer2', scorePlayer2) }
+        } else if(draw) {
+                console.log('It\'s a draw')
         }
     })
     
@@ -134,9 +153,9 @@ const gameBoardModule = (() => {
     })
     // brute force checking for mark
     const checkWinner = (() => {
-        let player1Win = false
-        let player2Win = false
-        let draw = false
+
+    
+
         
         
         //      Alternative code
@@ -160,17 +179,9 @@ const gameBoardModule = (() => {
             
         ) {
             player1Win = true
+            DisplayScore()
             
-            console.log(`${createdPlayerOneArray[0]} won!`)
-             if(!localStorage.getItem('scorePlayer1')) {
-                scorePlayer1++ 
-                localStorage.setItem('scorePlayer1', scorePlayer1)
-                console.log(scorePlayer1)
-                } else {
-                scorePlayer1 = parseInt(localStorage.getItem('scorePlayer1')) +1
-                localStorage.setItem('scorePlayer1', scorePlayer1)
-                
-                }
+            
         } else if (
         // checking for 1st horizontal line 0    
             gameBoard[0] === '0' &&
@@ -179,7 +190,7 @@ const gameBoardModule = (() => {
             
         ) { 
             player2Win = true
-            scorePlayer2++
+            DisplayScore()
            
         // checking for 2nd horizontal line X
         } else if (
@@ -188,10 +199,7 @@ const gameBoardModule = (() => {
             gameBoard[5] === "X"
           ) {
             player1Win = true
-            console.log(`${createdPlayerOneArray[0]} won!`)
-            scorePlayer1++
-            console.log(scorePlayer1)
-            localStorage.setItem('player1Score', scorePlayer1);
+            DisplayScore()
         // checking for 2nd horizontal line 0
         } else if (
             
@@ -201,128 +209,107 @@ const gameBoardModule = (() => {
             
        ) { 
            player2Win = true
-           scorePlayer2.push(1)
-           console.log(scorePlayer2)
-           localStorage.setItem('player2Score', scorePlayer2);
-           console.log(`${createdPlayerTwoArray[0]} won!`)}
+           DisplayScore()
        // checking for 3rd horizontal line X
-        else if (
+       } else if (
             gameBoard[6] === "X" &&
             gameBoard[7] === "X" &&
             gameBoard[8] === "X"
         ) { 
             player1Win = true
-            scorePlayer1++
-            console.log(scorePlayer1)
-            localStorage.setItem('player1Score', scorePlayer1);
-            console.log("X Wins")}
+            DisplayScore()
         // checking for 3rd horizontal line 0
-        else if (
+        } else if (
             gameBoard[6] === "0" &&
             gameBoard[7] === "0" &&
             gameBoard[8] === "0"
         ) { 
             player2Win = true
-            console.log("0 Wins")}
+            DisplayScore()
         // checking for 1st vertical line X
-        else if (
+         } else if (
             gameBoard[0] === "X" &&
             gameBoard[3] === "X" &&
             gameBoard[6] === "X"
         ) { 
             player1Win = true
-            scorePlayer2++
-            console.log(scorePlayer1)
-            localStorage.setItem('player1Score', scorePlayer1);
-            console.log("X Wins")}
+            DisplayScore()
             
         // checking for 1st vertical line 0
-        else if (
+        } else if (
             gameBoard[0] === "0" &&
             gameBoard[3] === "0" &&
             gameBoard[6] === "0"
         ) { 
             player2Win = true
-            scorePlayer1++
-            console.log(scorePlayer1)
-            localStorage.setItem('player2Score', scorePlayer2);
-            console.log("0 Wins")}
+            DisplayScore()
         // checking for 2nd vertical line X
-        else if (
+        } else if (
             gameBoard[1] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[7] === "X"
         ) { 
             player1Win = true
-            scorePlayer1++
-            console.log(scorePlayer1)
-            localStorage.setItem('player1Score', scorePlayer1);
-            console.log("X Wins")}
+            DisplayScore()
         // checking for 2nd vertical line 0
-        else if (
+        } else if (
             gameBoard[1] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[7] === "0"
         ) { 
             player2Win = true
-            scorePlayer1++
-            console.log(scorePlayer2)
-            localStorage.setItem('player2Score', scorePlayer2);
-            console.log("0 Wins")}
+            DisplayScore()
         // checking for 3nd vertical line X
-        else if (
+        } else if (
             gameBoard[2] === "X" &&
             gameBoard[5] === "X" &&
             gameBoard[8] === "X"
         ) { 
             player1Win = true
-            scorePlayer1++
-            console.log(scorePlayer1)
-            localStorage.setItem('player1Score', scorePlayer1);
-            console.log("X Wins")}
+            DisplayScore()
         // checking for 3nd vertical line 0
-        else if (
+        } else if (
             gameBoard[2] === "0" &&
             gameBoard[5] === "0" &&
             gameBoard[8] === "0"
         ) { 
             player2Win = true
-            console.log("0 Wins")}
+            DisplayScore()
         // checking for diagonal line X top left to bottom right
-        else if (
+        } else if (
             gameBoard[0] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[8] === "X"
         ) { 
             player1Win = true
-            console.log("X Wins")}
+            DisplayScore()
         // checking for diagonal line 0 top left to bottom right
-        else if (
+        } else if (
             gameBoard[0] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[8] === "0"
         ) { 
             player2Win = true
-            console.log("0 Wins")}
+            DisplayScore()
         // checking for diagonal line X top right to bottom left
-        else if (
+        } else if (
             gameBoard[2] === "X" &&
             gameBoard[4] === "X" &&
             gameBoard[6] === "X"
         ) { 
             player1Win = true
-            console.log("X Wins")}
-        else if (
+            DisplayScore()
+        } else if (
             gameBoard[2] === "0" &&
             gameBoard[4] === "0" &&
             gameBoard[6] === "0"
         ) { 
             player2Win = true
-            console.log("0 Wins")}
-        
-        else if (count == 9){
+            DisplayScore()
+        } else if (count == 9){
                 draw = true
-                console.log('draw')}   
+                DisplayScore()
+        }   
         
         return {player1Win, player2Win, draw}
         
