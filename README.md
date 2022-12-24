@@ -12,4 +12,8 @@ I watched tutorials and followed along them, but I really wanted to build this w
 
 Though there are other methods for defining the win and draw conditions, my method is my own, which I find is the easiest to understand.
 
-Nevertheless, by watching other tutorials I did learn about different methods to check for winning conditions, how to change turns
+Nevertheless, by watching other tutorials I did learn about different methods to check for winning conditions, how to change turns, etc.
+
+I got a lot of practice with modules and how to make code more modular after going through this project.
+
+Live preview: https://scrimba.com/scrim/cwGKNQT9
